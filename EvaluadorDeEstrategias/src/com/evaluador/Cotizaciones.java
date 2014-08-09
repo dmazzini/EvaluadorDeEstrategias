@@ -11,6 +11,7 @@ public class Cotizaciones {
 		put(new ClaveCompuesta("YPF", new DateTime(2014, 4, 1, 0, 0)), 290.0);
 		put(new ClaveCompuesta("TS", new DateTime(2014, 4, 1, 0, 0)), 215.5);
 		put(new ClaveCompuesta("GGAL", new DateTime(2014, 4, 1, 0, 0)), 13.45);
+		put(new ClaveCompuesta("YPF", new DateTime(2014, 4, 2, 0, 0)), 294.0);
 		put(new ClaveCompuesta("TS", new DateTime(2014, 4, 2, 0, 0)), 216.5);
 		put(new ClaveCompuesta("GGAL", new DateTime(2014, 4, 2, 0, 0)), 13.25);
 		put(new ClaveCompuesta("YPF", new DateTime(2014, 4, 3, 0, 0)), 288.0);
@@ -30,8 +31,8 @@ public class Cotizaciones {
 		put(new ClaveCompuesta("GGAL", new DateTime(2014, 4, 7, 0, 0)), 13.0);
 	}};
 
-	public static Double cotizacionDeAccionEnFecha(String accion, DateTime fechaVenta) {
-		return cotizaciones.get(new ClaveCompuesta(accion,fechaVenta));
+	public static Double cotizacionDeAccionEnFecha(String accion, DateTime fecha) {
+		return cotizaciones.get(new ClaveCompuesta(accion,fecha));
 	}
 	
 }
