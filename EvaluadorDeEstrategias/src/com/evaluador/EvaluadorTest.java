@@ -10,7 +10,7 @@ import java.util.Set;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-public class TestXXX {
+public class EvaluadorTest {
 
 	static final Set<String> acciones = new HashSet<String>() {{
 		add("YPF");

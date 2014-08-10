@@ -3,13 +3,14 @@ package com.evaluador;
 import java.util.Map;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 public class Estrategia2 extends Estrategia {
 
-	private Map<String, DateTime> fechasDeCompra;
+	private Acciones acciones;
 
-	public Estrategia2(Map<String, DateTime> fechasDeCompra) {
-		fechasDeCompra = fechasDeCompra;
+	public Estrategia2(Acciones acciones) {
+		this.acciones = acciones;
 	}
 
 	@Override
@@ -24,10 +25,10 @@ public class Estrategia2 extends Estrategia {
 
 	@Override
 	public boolean decidirVenta(String accion, DateTime fecha) {
-
-		DateTime fechaCompra = fechasDeCompra.get(accion);
 		
-		return fechaCompra.compareTo(fecha) > 5;
+		DateTime fechaCompra = acciones.fechaDeAccionMasAntigua(accion);
+		
+		return fechaCompra != null && (Days.daysBetween(fechaCompra, fecha).getDays() >= 5);
 	}
 
 }
