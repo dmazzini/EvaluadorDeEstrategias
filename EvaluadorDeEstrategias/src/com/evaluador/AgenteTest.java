@@ -86,6 +86,7 @@ public class AgenteTest {
 		assertTrue(estrategia2.decidirVenta("GGAL", new DateTime(2014, 4, 7, 0, 0)));
 	}
 	
+	
 //	@Test
 //	public void test() {
 //		

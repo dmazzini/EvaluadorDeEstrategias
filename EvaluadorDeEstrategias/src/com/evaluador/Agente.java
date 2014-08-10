@@ -16,8 +16,8 @@ public class Agente {
 		accionesCompradas = new HashMap<String, Integer>();
 	}
 
-	public void realizarCompra(String accion, DateTime fechaCompra) {
-		Double cotizacion = Cotizaciones.cotizacionDeAccionEnFecha(accion, fechaCompra);
+	public void realizarCompra(String accion, DateTime fecha) {
+		Double cotizacion = Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha);
 		Integer cantidadAccionesCompradas = (int) Math.floor(1000/cotizacion);
 		Integer cantidadAcciones;
 		if(accionesCompradas.containsKey(accion)) {
@@ -28,6 +28,8 @@ public class Agente {
 		accionesCompradas.put(accion, cantidadAcciones);
 		
 		cantidadDineroEfectivo -= cotizacion * cantidadAccionesCompradas;
+		
+		System.out.println("Compro accion:" + accion + " cantidad:" + cantidadAccionesCompradas + " fecha:" + fecha);
 	}
 
 	public Double cantidadDineroEfectivo() {
@@ -45,9 +47,11 @@ public class Agente {
 		return ret;
 	}
 
-	public void realizarVenta(String accion, DateTime fechaVenta) {
-		cantidadDineroEfectivo += cantidadDeAcciones(accion)*Cotizaciones.cotizacionDeAccionEnFecha(accion, fechaVenta);
+	public void realizarVenta(String accion, DateTime fecha) {
+		cantidadDineroEfectivo += cantidadDeAcciones(accion)*Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha);
 		accionesCompradas.put(accion, 0);
+		System.out.println("Vendio accion:" + accion + " fecha:" + fecha);
+		
 	}
 
 }
