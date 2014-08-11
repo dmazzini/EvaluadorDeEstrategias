@@ -31,8 +31,8 @@ public class RegistroDeOperacionesTest {
 		EvaluadorDeEstrategias evaluador = new EvaluadorDeEstrategias();
 		RegistroOperaciones registroOperaciones = new RegistroOperaciones();
 		evaluador.evaluarEstrategias(1000000.0, estrategias, new DateTime("2014-4-1"));
-		assertEquals(11, registroOperaciones.cantidadDeOperacionesDeUnaEstrategia(estrategia1));
-		assertEquals(9,	registroOperaciones.cantidadDeOperacionesDeUnaEstrategia(estrategia1));
+		assertEquals(14, registroOperaciones.cantidadDeOperacionesDeUnaEstrategia(estrategia1));
+		assertEquals(12, registroOperaciones.cantidadDeOperacionesDeUnaEstrategia(estrategia2));
 	}
 
 }
