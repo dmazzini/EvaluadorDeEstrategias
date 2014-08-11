@@ -23,7 +23,7 @@ public class Agente {
 	}
 
 	public void realizarVenta(String accion, DateTime fecha) {
-		cantidadDineroEfectivo += acciones.cantidadDeAcciones(accion)*Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha);
+		cantidadDineroEfectivo += acciones.cantidadDeAccionesDeUnaEmpresa(accion)*Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha);
 		acciones.quitarAccionesVendidas(accion);
 		
 		System.out.println("Vendio accion:" + accion + " fecha:" + fecha);
@@ -35,7 +35,7 @@ public class Agente {
 	}
 
 	public Integer cantidadDeAcciones(String accion) {
-		return acciones.cantidadDeAcciones(accion);
+		return acciones.cantidadDeAccionesDeUnaEmpresa(accion);
 	}
 
 	public Acciones acciones() {

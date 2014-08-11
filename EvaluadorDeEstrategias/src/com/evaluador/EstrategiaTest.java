@@ -9,7 +9,7 @@ import org.junit.Test;
 public class EstrategiaTest {
 
 	@Test
-	public void test4() {
+	public void decidirSiCompraConEstrategia1() {
 		Estrategia estrategia1 = new Estrategia1();
 		assertFalse(estrategia1.decidirCompra("YPF", new DateTime("2014-4-2")));
 		assertFalse(estrategia1.decidirCompra("TS", new DateTime("2014-4-2")));
@@ -17,29 +17,28 @@ public class EstrategiaTest {
 	}
 
 	@Test
-	public void test5() {
+	public void decidirSiVendeEstrategia1() {
 		Estrategia estrategia1 = new Estrategia1();
-		assertTrue(estrategia1.decidirVenta("YPF", new DateTime("2014-4-4")));
-		assertFalse(estrategia1.decidirVenta("TS", new DateTime("2014-4-4")));
-		assertFalse(estrategia1.decidirVenta("GGAL", new DateTime("2014-4-4")));
+		assertTrue(estrategia1.decidirVenta("YPF", new Acciones(), new DateTime("2014-4-4")));
+		assertFalse(estrategia1.decidirVenta("TS", new Acciones(), new DateTime("2014-4-4")));
+		assertFalse(estrategia1.decidirVenta("GGAL", new Acciones(), new DateTime("2014-4-4")));
 	}
 	
 	@Test
-	public void test6() {
-		Agente agente = new Agente(1000000.0);
-		Estrategia estrategia2 = new Estrategia2(agente.acciones());
-		assertFalse(estrategia2.decidirVenta("YPF", new DateTime("2014-4-2")));
-		assertFalse(estrategia2.decidirVenta("TS", new DateTime("2014-4-2")));
-		assertFalse(estrategia2.decidirVenta("GGAL", new DateTime("2014-4-2")));
+	public void decidirSiVendeSinUnaCompraAnteriorConEstrategia2() {
+		Estrategia estrategia2 = new Estrategia2();
+		assertFalse(estrategia2.decidirVenta("YPF", new Acciones(),  new DateTime("2014-4-2")));
+		assertFalse(estrategia2.decidirVenta("TS", new Acciones(), new DateTime("2014-4-2")));
+		assertFalse(estrategia2.decidirVenta("GGAL", new Acciones(), new DateTime("2014-4-2")));
 	}
 
 	@Test
-	public void test7() {
-		Agente agente = new Agente(1000000.0);
-		agente.realizarCompra("GGAL", new DateTime("2014-4-2"));
-		Estrategia estrategia2 = new Estrategia2(agente.acciones());
-		assertFalse(estrategia2.decidirVenta("YPF", new DateTime("2014-4-7")));
-		assertFalse(estrategia2.decidirVenta("TS", new DateTime("2014-4-7")));
-		assertTrue(estrategia2.decidirVenta("GGAL", new DateTime("2014-4-7")));
+	public void decidirSiVendeConUnaCompraAnteriorConEstrategia2() {
+		Acciones acciones = new Acciones();
+		acciones.guardarAccionesCompradas("GGAL", 10, new DateTime("2014-4-2"));
+		Estrategia estrategia2 = new Estrategia2();
+		assertFalse(estrategia2.decidirVenta("YPF", acciones, new DateTime("2014-4-7")));
+		assertFalse(estrategia2.decidirVenta("TS", acciones, new DateTime("2014-4-7")));
+		assertTrue(estrategia2.decidirVenta("GGAL", acciones, new DateTime("2014-4-7")));
 	}
 }

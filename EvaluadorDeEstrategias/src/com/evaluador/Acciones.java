@@ -1,33 +1,35 @@
 package com.evaluador;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.joda.time.DateTime;
 
 public class Acciones {
 
-	private Set<Accion> acciones;
+	private Set<Accion> conjuntoDeAcciones;
 	
 	public Acciones() {
-		acciones = new HashSet<Accion>();
+		conjuntoDeAcciones = new HashSet<Accion>();
 	}
 
 	public void guardarAccionesCompradas(String accion, Integer cantidadAccionesCompradas, DateTime fecha) {
-		acciones.add(new Accion(accion, cantidadAccionesCompradas, fecha));
+		conjuntoDeAcciones.add(new Accion(accion, cantidadAccionesCompradas, fecha));
 	}
 
 	public void quitarAccionesVendidas(String nombreAccion) {
-		for (Accion accion : acciones) {
-			if(accion.getNombre().equals(nombreAccion)) {
-				acciones.remove(accion);
+		Iterator<Accion> iterator = conjuntoDeAcciones.iterator();
+		while (iterator.hasNext()) {
+			if(iterator.next().getNombre().equals(nombreAccion)) {
+				iterator.remove();
 			}
 		}
 	}
 
-	public Integer cantidadDeAcciones(String nombreAccion) {
+	public Integer cantidadDeAccionesDeUnaEmpresa(String nombreAccion) {
 		Integer cantidadDeAcciones = 0;
-		for (Accion accion : acciones) {
+		for (Accion accion : conjuntoDeAcciones) {
 			if(accion.getNombre().equals(nombreAccion)) {
 				cantidadDeAcciones += accion.getCantidad();
 			}
@@ -37,7 +39,7 @@ public class Acciones {
 
 	public DateTime fechaDeAccionMasAntigua(String nombreAccion) {
 		DateTime fechaDeAccionMasAntigua = null;
-		for (Accion accion : acciones) {
+		for (Accion accion : conjuntoDeAcciones) {
 			if(accion.getNombre().equals(nombreAccion)) {
 				if (fechaDeAccionMasAntigua == null || fechaDeAccionMasAntigua.isAfter(accion.getFecha())) {
 					fechaDeAccionMasAntigua = accion.getFecha();

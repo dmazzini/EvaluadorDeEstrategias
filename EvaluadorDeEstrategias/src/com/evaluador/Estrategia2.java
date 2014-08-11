@@ -1,17 +1,9 @@
 package com.evaluador;
 
-import java.util.Map;
-
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
 public class Estrategia2 extends Estrategia {
-
-	private Acciones acciones;
-
-	public Estrategia2(Acciones acciones) {
-		this.acciones = acciones;
-	}
 
 	@Override
 	public boolean decidirCompra(String accion, DateTime fecha) {
@@ -24,7 +16,7 @@ public class Estrategia2 extends Estrategia {
 	}
 
 	@Override
-	public boolean decidirVenta(String accion, DateTime fecha) {
+	public boolean decidirVenta(String accion, Acciones acciones, DateTime fecha) {
 		
 		DateTime fechaCompra = acciones.fechaDeAccionMasAntigua(accion);
 		

@@ -18,37 +18,26 @@ public class EvaluadorTest {
 		add("GGAL");
 	}};
 	
-	@Test
-	public void test1() {
-		assertEquals(290.0,	Cotizaciones.cotizacionDeAccionEnFecha("YPF", new DateTime("2014-4-1")),0);
-	}
-
-	@Test
-	public void test2() {
-		assertEquals(215.5, Cotizaciones.cotizacionDeAccionEnFecha("TS", new DateTime("2014-4-1")),	0);
-	}
 	
 	@Test
 	public void test3() {
-
 		final Estrategia1 estrategia1 = new Estrategia1();
-		final Estrategia2 estrategia2 = new Estrategia2(null);
+		final Estrategia2 estrategia2 = new Estrategia2();
 		Set<Estrategia> estrategias = new HashSet<Estrategia>() {
 			{
 				add(estrategia1);
 				add(estrategia2);
 			}
 		};
-		Agente agente = new Agente(1000000.0);
-		assertTrue(evaluarEstrategias(agente , estrategias,  new DateTime("2014-4-1")).contains(estrategia2));
-		assertFalse(evaluarEstrategias(agente, estrategias, new DateTime("2014-4-1")).contains(estrategia1));
+		assertTrue(evaluarEstrategias(1000000.0 , estrategias,  new DateTime("2014-4-1")).contains(estrategia2));
+		assertFalse(evaluarEstrategias(1000000.0, estrategias, new DateTime("2014-4-1")).contains(estrategia1));
 	}
 	
 	@Test
 	public void test4() {
 
 		final Estrategia1 estrategia1 = new Estrategia1();
-		final Estrategia2 estrategia2 = new Estrategia2(null);
+		final Estrategia2 estrategia2 = new Estrategia2();
 		Set<Estrategia> estrategias = new HashSet<Estrategia>() {
 			{
 				add(estrategia1);
@@ -57,17 +46,16 @@ public class EvaluadorTest {
 		};
 
 		RegistroOperaciones registroOperaciones = new RegistroOperaciones();
-		Agente agente = new Agente(1000000.0);
-		evaluarEstrategias(agente, estrategias, new DateTime("2014-4-1"));
+		evaluarEstrategias(1000000.0, estrategias, new DateTime("2014-4-1"));
 		assertEquals(11, registroOperaciones.cantidadDeOperacionesDeUnaEstrategia(estrategia1));
 		assertEquals(9,	registroOperaciones.cantidadDeOperacionesDeUnaEstrategia(estrategia1));
 	}
 
-	private Set<Estrategia> evaluarEstrategias(Agente agente, Set<Estrategia> estrategias, DateTime fechaInicial) {
+	private Set<Estrategia> evaluarEstrategias(Double cantidadDineroEfectivo, Set<Estrategia> estrategias, DateTime fechaInicial) {
 		Set estrategiasGanadoras = new HashSet();
 		double resultadoEstrategia;
 		for (Estrategia estrategia : estrategias) {
-			resultadoEstrategia = ejecutarOperaciones(agente, estrategia, fechaInicial);
+			resultadoEstrategia = ejecutarOperaciones(new Agente(cantidadDineroEfectivo), estrategia, fechaInicial);
 		}
 		return estrategiasGanadoras;
 	}
@@ -85,7 +73,7 @@ public class EvaluadorTest {
 					agente.realizarCompra(accion, iteradorIntervalo);
 				}
 				
-				if (estrategia.decidirVenta(accion, iteradorIntervalo)) {
+				if (estrategia.decidirVenta(accion, agente.acciones(), iteradorIntervalo)) {
 					agente.realizarVenta(accion, iteradorIntervalo);
 				}
 			}

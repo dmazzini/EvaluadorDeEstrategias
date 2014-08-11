@@ -1,23 +1,15 @@
 package com.evaluador;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeConstants;
 import org.junit.Test;
 
 
 public class AgenteTest {
 
-
 	@Test
-	public void test() {
+	public void realizarUnaCompra() {
 		Agente agente = new Agente(1000000.0);
 		agente.realizarCompra("GGAL", new DateTime("2014-4-2"));
 		assertEquals(Double.valueOf(999006.25), agente.cantidadDineroEfectivo(), 0.5);
@@ -27,7 +19,7 @@ public class AgenteTest {
 	}
 	
 	@Test
-	public void test2() {
+	public void realizarVariasCompras() {
 		Agente agente = new Agente(1000000.0);
 		agente.realizarCompra("GGAL", new DateTime("2014-4-2"));
 		agente.realizarCompra("YPF", new DateTime("2014-4-3"));
@@ -39,7 +31,7 @@ public class AgenteTest {
 	}
 	
 	@Test
-	public void test3() {
+	public void realizarVenta() {
 		Agente agente = new Agente(1000000.0);
 		agente.realizarCompra("GGAL", new DateTime("2014-4-2"));
 		agente.realizarCompra("YPF", new DateTime("2014-4-3"));

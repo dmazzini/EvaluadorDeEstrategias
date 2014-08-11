@@ -15,7 +15,7 @@ public class Estrategia1 extends Estrategia {
 	}
 
 	@Override
-	public boolean decidirVenta(String accion, DateTime fecha) {
+	public boolean decidirVenta(String accion, Acciones acciones, DateTime fecha) {
 		Double cotizacionActual = Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha);
 		Double cotizacionDiaAnterior = Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha.minusDays(1));
 		double delta = cotizacionActual - cotizacionDiaAnterior;
