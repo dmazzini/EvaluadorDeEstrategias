@@ -23,4 +23,8 @@ public class Estrategia2 extends Estrategia {
 		return fechaCompra != null && (Days.daysBetween(fechaCompra, fecha).getDays() >= 5);
 	}
 
+	@Override
+	public String toString() {
+		return "Estrategia2";
+	}
 }

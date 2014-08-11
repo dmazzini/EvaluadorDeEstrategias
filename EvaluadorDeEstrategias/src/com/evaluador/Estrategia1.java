@@ -24,4 +24,11 @@ public class Estrategia1 extends Estrategia {
 		return (Math.signum(porcentaje) > 0) && (Math.abs(porcentaje) >= 2.0);
 	}
 
+	@Override
+	public String toString() {
+		return "Estrategia1";
+	}
+	
+	
+
 }

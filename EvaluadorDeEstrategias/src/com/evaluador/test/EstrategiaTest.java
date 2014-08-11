@@ -1,10 +1,15 @@
-package com.evaluador;
+package com.evaluador.test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.joda.time.DateTime;
 import org.junit.Test;
+
+import com.evaluador.Acciones;
+import com.evaluador.Estrategia;
+import com.evaluador.Estrategia1;
+import com.evaluador.Estrategia2;
 
 public class EstrategiaTest {
 

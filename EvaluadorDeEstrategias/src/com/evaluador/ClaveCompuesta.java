@@ -50,5 +50,9 @@ public class ClaveCompuesta {
 				+ fechaVenta + "]";
 	}
 
+	public String accion() {
+		return accion;
+	}
+
 	
 }

@@ -1,7 +1,9 @@
 package com.evaluador;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.joda.time.DateTime;
 
@@ -102,6 +104,15 @@ public class Cotizaciones {
 
 	public static Double cotizacionDeAccionEnFecha(String accion, DateTime fecha) {
 		return cotizaciones.get(new ClaveCompuesta(accion,fecha));
+	}
+
+	public static Set<String> acciones() {
+		Set<String> ret = new HashSet<String>();
+		
+		for (ClaveCompuesta clave : cotizaciones.keySet()) {
+			ret.add(clave.accion());
+		}
+		return ret;
 	}
 	
 }
