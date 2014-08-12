@@ -19,7 +19,7 @@ public class EvaluadorTest {
 
 	@Test
 	public void evaluadorDeEstrategias() {
-		final Estrategia1 estrategia1 = new Estrategia1();
+		final Estrategia estrategia1 = new Estrategia1();
 		final Estrategia2 estrategia2 = new Estrategia2();
 		Set<Estrategia> estrategias = new HashSet<Estrategia>() {
 			{

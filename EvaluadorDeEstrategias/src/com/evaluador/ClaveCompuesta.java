@@ -5,11 +5,11 @@ import org.joda.time.DateTime;
 public class ClaveCompuesta {
 
 	private String accion;
-	private DateTime fechaVenta;
+	private DateTime fecha;
 
-	public ClaveCompuesta(String accion, DateTime fechaVenta) {
+	public ClaveCompuesta(String accion, DateTime fecha) {
 		this.accion = accion;
-		this.fechaVenta = fechaVenta;
+		this.fecha = fecha;
 	}
 
 	@Override
@@ -18,7 +18,7 @@ public class ClaveCompuesta {
 		int result = 1;
 		result = prime * result + ((accion == null) ? 0 : accion.hashCode());
 		result = prime * result
-				+ ((fechaVenta == null) ? 0 : fechaVenta.hashCode());
+				+ ((fecha == null) ? 0 : fecha.hashCode());
 		return result;
 	}
 
@@ -36,10 +36,10 @@ public class ClaveCompuesta {
 				return false;
 		} else if (!accion.equals(other.accion))
 			return false;
-		if (fechaVenta == null) {
-			if (other.fechaVenta != null)
+		if (fecha == null) {
+			if (other.fecha != null)
 				return false;
-		} else if (!fechaVenta.withTimeAtStartOfDay().isEqual(other.fechaVenta.withTimeAtStartOfDay()))
+		} else if (!fecha.withTimeAtStartOfDay().isEqual(other.fecha.withTimeAtStartOfDay()))
 			return false;
 		return true;
 	}
@@ -47,12 +47,14 @@ public class ClaveCompuesta {
 	@Override
 	public String toString() {
 		return "ClaveCompuesta [accion=" + accion + ", fechaVenta="
-				+ fechaVenta + "]";
+				+ fecha + "]";
 	}
 
 	public String accion() {
 		return accion;
 	}
 
-	
+	public DateTime fecha() {
+		return fecha;
+	}
 }

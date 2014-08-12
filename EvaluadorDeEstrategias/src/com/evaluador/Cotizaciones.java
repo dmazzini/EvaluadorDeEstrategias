@@ -114,5 +114,22 @@ public class Cotizaciones {
 		}
 		return ret;
 	}
+
+	public static double promedioDeCotizacionesHastaLaFecha(String accion,	DateTime fecha) {
+		int sumatoria = 0;
+		int cantidad = 0;
+		for (ClaveCompuesta clave : cotizaciones.keySet()) {
+			if (clave.accion().equals(accion) && clave.fecha().isBefore(fecha)) {
+				sumatoria += cotizaciones.get(clave);
+				cantidad++;
+			}
+		}
+		double promedio;
+		if (cantidad == 0)
+			promedio = 0;
+		else
+			promedio = sumatoria/cantidad;
+		return promedio;
+	}
 	
 }

@@ -12,24 +12,24 @@ public class Agente {
 		acciones = new Acciones();
 	}
 
-	public void realizarCompra(String accion, DateTime fecha) {
-		Double cotizacion = Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha);
-		Integer cantidadAccionesCompradas = (int) Math.floor(1000/cotizacion);
-
-		acciones.guardarAccionesCompradas(accion, cantidadAccionesCompradas, fecha);
-		cantidadDineroEfectivo -= cotizacion * cantidadAccionesCompradas;
-		
-		System.out.println("Compro accion:" + accion + " cantidad:" + cantidadAccionesCompradas + " fecha:" + fecha);
-	}
-
-	public void realizarVenta(String accion, DateTime fecha) {
-		Integer cantidadDeAccionesDeUnaEmpresa = acciones.cantidadDeAccionesDeUnaEmpresa(accion);
-		cantidadDineroEfectivo += cantidadDeAccionesDeUnaEmpresa*Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha);
-		acciones.quitarAccionesVendidas(accion);
-		
-		System.out.println("Vendio accion:" + accion + " cantidad:" + cantidadDeAccionesDeUnaEmpresa + " fecha:" + fecha);
-		
-	}
+//	public void realizarCompra(String accion, DateTime fecha) {
+//		Double cotizacion = Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha);
+//		Integer cantidadAccionesCompradas = (int) Math.floor(1000/cotizacion);
+//
+//		acciones.guardarAccionesCompradas(accion, cantidadAccionesCompradas, fecha);
+//		cantidadDineroEfectivo -= cotizacion * cantidadAccionesCompradas;
+//		
+//		System.out.println("Compro accion:" + accion + " cantidad:" + cantidadAccionesCompradas + " fecha:" + fecha);
+//	}
+//
+//	public void realizarVenta(String accion, DateTime fecha) {
+//		Integer cantidadDeAccionesDeUnaEmpresa = acciones.cantidadDeAccionesDeUnaEmpresa(accion);
+//		cantidadDineroEfectivo += cantidadDeAccionesDeUnaEmpresa*Cotizaciones.cotizacionDeAccionEnFecha(accion, fecha);
+//		acciones.quitarAccionesVendidas(accion);
+//		
+//		System.out.println("Vendio accion:" + accion + " cantidad:" + cantidadDeAccionesDeUnaEmpresa + " fecha:" + fecha);
+//		
+//	}
 	
 	public Double cantidadDineroEfectivo() {
 		return cantidadDineroEfectivo;
@@ -41,6 +41,26 @@ public class Agente {
 
 	public Acciones acciones() {
 		return acciones;
+	}
+
+	public void guardarAccionesCompradas(String accion, Integer cantidad, DateTime fecha) {
+		acciones.guardarAccionesCompradas(accion, cantidad, fecha);
+	}
+
+	public void restarEfectivo(double efectivo) {
+		cantidadDineroEfectivo -= efectivo;
+	}
+
+	public Integer cantidadDeAccionesDeUnaEmpresa(String accion) {
+		return acciones.cantidadDeAccionesDeUnaEmpresa(accion);
+	}
+
+	public void sumarEfectivo(double efectivo) {
+		cantidadDineroEfectivo += efectivo;
+	}
+
+	public void quitarAccionesVendidas(String accion) {
+		acciones.quitarAccionesVendidas(accion);		
 	}
 
 	
