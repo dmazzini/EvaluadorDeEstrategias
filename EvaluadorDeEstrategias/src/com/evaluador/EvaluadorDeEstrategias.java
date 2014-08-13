@@ -31,8 +31,7 @@ public class EvaluadorDeEstrategias {
 	}
 
 	private double ejecutarOperaciones(Agente agente, Estrategia estrategia, DateTime fecha, RegistroOperaciones registroDeOperaciones) {
-		//El primer dia no se realizan operaciones
-		DateTime iteradorFecha = fecha.plusDays(1);
+		DateTime iteradorFecha = fecha;
 		DateTime finIntervalo = fecha.plusDays(fecha.dayOfMonth().getMaximumValue());
 		while (iteradorFecha.isBefore(finIntervalo)) {
 			for (String accion : Cotizaciones.acciones()) {

@@ -14,4 +14,8 @@ public class Cotizacion {
 		this.precio = precio;
 	}
 
+	public String accion() {
+		return accion;
+	}
+
 }

@@ -25,7 +25,7 @@ public class OperacionTest {
 		compra.operar(agente);
 		
 		assertEquals(Double.valueOf(999006.25), agente.cantidadDineroEfectivo(), 0.5);
-		assertEquals(Integer.valueOf(cantidad), agente.cantidadDeAcciones("GGAL"));
+		assertEquals(Integer.valueOf(cantidad), agente.cantidadDeAccionesDeUnaEmpresa("GGAL"));
 	}
 	
 	@Test
@@ -44,6 +44,6 @@ public class OperacionTest {
 		venta.operar(agente);
 		
 		assertEquals(Double.valueOf(999966.25), agente.cantidadDineroEfectivo(), 0.5);
-		assertEquals(Integer.valueOf(0), agente.cantidadDeAcciones("GGAL"));
+		assertEquals(Integer.valueOf(0), agente.cantidadDeAccionesDeUnaEmpresa("GGAL"));
 	}
 }

@@ -18,20 +18,24 @@ public class Agente {
 	}
 	
 	public void realizarVenta(String accion, Integer cantidad, Double cotizacion, DateTime fecha) {
-		this.sumarEfectivo(cantidad*cotizacion);
 		this.quitarAccionesVendidas(accion);
+		this.sumarEfectivo(cantidad*cotizacion);
 	}
 	
 	public Double cantidadDineroEfectivo() {
 		return cantidadDineroEfectivo;
 	}
 
-	public Integer cantidadDeAcciones(String accion) {
-		return acciones.cantidadDeAccionesDeUnaEmpresa(accion);
-	}
-
 	public void guardarAccionesCompradas(String accion, Integer cantidad, DateTime fecha) {
 		acciones.guardarAccionesCompradas(accion, cantidad, fecha);
+	}
+
+	public void quitarAccionesVendidas(String accion) {
+		acciones.quitarAccionesVendidas(accion);		
+	}
+
+	public void sumarEfectivo(double efectivo) {
+		cantidadDineroEfectivo += efectivo;
 	}
 
 	public void restarEfectivo(double efectivo) {
@@ -40,14 +44,6 @@ public class Agente {
 
 	public Integer cantidadDeAccionesDeUnaEmpresa(String accion) {
 		return acciones.cantidadDeAccionesDeUnaEmpresa(accion);
-	}
-
-	public void sumarEfectivo(double efectivo) {
-		cantidadDineroEfectivo += efectivo;
-	}
-
-	public void quitarAccionesVendidas(String accion) {
-		acciones.quitarAccionesVendidas(accion);		
 	}
 
 	public DateTime fechaDeAccionMasAntigua(String accion) {
