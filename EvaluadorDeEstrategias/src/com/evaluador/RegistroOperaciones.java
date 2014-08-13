@@ -21,50 +21,40 @@ public class RegistroOperaciones {
 		registros.add(registroNuevo);
 	}
 	
-	public int cantidadDeOperacionesDeUnaEstrategia(Estrategia estrategia) {
-		int cantidad = 0;
-		for (Registro registro : registros) {
-			if (registro.estrategia().equals(estrategia.nombreEstrategia())) {
-				cantidad++;
-			}
-		}
-		return cantidad;
+	public int cantidadDeOperacionesDeUnaEstrategia(final Estrategia estrategia) {
+		return this.contar(registros, new Closure<Registro>() {
+			public boolean execute(Registro registro) {return registro.estrategia().equals(estrategia.nombreEstrategia());}
+		});
 	}
 
 	public int cantidadDeCompras() {
-		int cantidad = 0;
-		for (Registro registro : registros) {
-			if (registro.tipoOperacion().equals("Compra")) {
-				cantidad++;
-			}
-		}
-		return cantidad;
+		return this.contar(registros, new Closure<Registro>() {
+			public boolean execute(Registro registro) {return registro.tipoOperacion().equals("Compra");}
+		});
 	}
 
-	public int cantidadDeComprasDeUnaEstrategia(Estrategia estrategia) {
-		int cantidad = 0;
-		for (Registro registro : registros) {
-			if (registro.tipoOperacion().equals("Compra") && registro.estrategia().equals(estrategia.nombreEstrategia())) {
-				cantidad++;
-			}
-		}
-		return cantidad;
+	public int cantidadDeComprasDeUnaEstrategia(final Estrategia estrategia) {
+		return this.contar(registros, new Closure<Registro>() {
+			public boolean execute(Registro registro) {return registro.tipoOperacion().equals("Compra") && registro.estrategia().equals(estrategia.nombreEstrategia());}
+		});
 	}
 
-	public int cantidadDeVentasDeUnaEstrategia(Estrategia estrategia) {
-		int cantidad = 0;
-		for (Registro registro : registros) {
-			if (registro.tipoOperacion().equals("Venta") && registro.estrategia().equals(estrategia.nombreEstrategia())) {
-				cantidad++;
-			}
-		}
-		return cantidad;
+	public int cantidadDeVentasDeUnaEstrategia(final Estrategia estrategia) {
+		return this.contar(registros, new Closure<Registro>() {
+			public boolean execute(Registro registro) {return registro.tipoOperacion().equals("Venta") && registro.estrategia().equals(estrategia.nombreEstrategia());}
+		});
 	}
 
 	public int cantidadDeVentas() {
+		return this.contar(registros, new Closure<Registro>() {
+			public boolean execute(Registro registro) {return registro.tipoOperacion().equals("Venta");}
+		});
+	}
+	
+	public int contar(List<Registro> registros, Closure<Registro> condition) {
 		int cantidad = 0;
 		for (Registro registro : registros) {
-			if (registro.tipoOperacion().equals("Venta")) {
+			if (condition.execute(registro)) {
 				cantidad++;
 			}
 		}
@@ -76,6 +66,4 @@ public class RegistroOperaciones {
 			System.out.println(registro);
 		}
 	}
-	
-	
 }
