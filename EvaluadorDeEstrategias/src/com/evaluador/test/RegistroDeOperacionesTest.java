@@ -2,37 +2,32 @@ package com.evaluador.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.joda.time.DateTime;
 import org.junit.Test;
 
+import com.evaluador.Agente;
 import com.evaluador.Estrategia;
 import com.evaluador.Estrategia1;
-import com.evaluador.Estrategia2;
-import com.evaluador.EvaluadorDeEstrategias;
+import com.evaluador.Operacion;
 import com.evaluador.RegistroOperaciones;
 
 public class RegistroDeOperacionesTest {
 
 	@Test
-	public void test4() {
+	public void registroDeOperacion() {
 
-		final Estrategia estrategia1 = new Estrategia1();
-		final Estrategia2 estrategia2 = new Estrategia2();
-		Set<Estrategia> estrategias = new HashSet<Estrategia>() {
-			{
-				add(estrategia1);
-				add(estrategia2);
-			}
-		};
-
-		EvaluadorDeEstrategias evaluador = new EvaluadorDeEstrategias();
+		Estrategia estrategia = new Estrategia1();
+		Agente agente = new Agente(1000000.0);		
+		Operacion operacion = estrategia.crearOperacion("GGAL", agente , new DateTime("2014-4-2"));
 		RegistroOperaciones registroOperaciones = new RegistroOperaciones();
-		evaluador.evaluarEstrategias(1000000.0, estrategias, new DateTime("2014-4-1"));
-		assertEquals(14, registroOperaciones.cantidadDeOperacionesDeUnaEstrategia(estrategia1));
-		assertEquals(12, registroOperaciones.cantidadDeOperacionesDeUnaEstrategia(estrategia2));
+		
+		registroOperaciones.registrarOperacion(operacion, estrategia);
+		
+		assertEquals(1, registroOperaciones.cantidadDeOperacionesDeUnaEstrategia(estrategia));
+		assertEquals(1, registroOperaciones.cantidadDeComprasDeUnaEstrategia(estrategia));
+		assertEquals(0, registroOperaciones.cantidadDeVentasDeUnaEstrategia(estrategia));
+		assertEquals(1, registroOperaciones.cantidadDeCompras());
+		assertEquals(0, registroOperaciones.cantidadDeVentas());
 	}
 
 }

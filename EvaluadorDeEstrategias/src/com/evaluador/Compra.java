@@ -2,7 +2,7 @@ package com.evaluador;
 
 import org.joda.time.DateTime;
 
-public class Compra extends Operacion{
+public class Compra extends Operacion {
 
 	public Compra(String accion, DateTime fecha, Double cotizacion, Integer cantidad) {
 		this.accion = accion;
@@ -13,9 +13,7 @@ public class Compra extends Operacion{
 
 	@Override
 	public void operar(Agente agente) {
-		agente.guardarAccionesCompradas(accion, cantidad, fecha);
-		agente.restarEfectivo(cotizacion * cantidad);
-		
+		agente.realizarCompra(accion, cantidad, cotizacion, fecha);
 	}
 
 	public String tipoOperacion() {

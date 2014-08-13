@@ -14,9 +14,7 @@ public class Venta extends Operacion {
 
 	@Override
 	public void operar(Agente agente) {
-		agente.sumarEfectivo(cantidad*cotizacion);
-		agente.quitarAccionesVendidas(accion);
-
+		agente.realizarVenta(accion, cantidad, cotizacion, fecha);
 	}
 
 	public String tipoOperacion() {
