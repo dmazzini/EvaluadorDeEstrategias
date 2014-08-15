@@ -7,7 +7,7 @@ public abstract class Estrategia {
 	public Operacion crearOperacion(String accion, Agente agente, DateTime fecha) {
 		Operacion operacion = new OperacionNull(accion, fecha);
 		
-		if(esPrimerDiaDelMes(fecha)) {
+		if(OperacionesDeFechas.esPrimerDiaDelMes(fecha)) {
 			return operacion;
 		}
 		
@@ -17,7 +17,7 @@ public abstract class Estrategia {
 			cantidad = (int) Math.floor(1000/cotizacion);
 			operacion = new Compra(accion, fecha, cotizacion, cantidad);
 		} 
-		if (cumpleCondicionVenta(accion, agente, fecha) || esUltimoDiaDelMes(fecha)) {
+		if (cumpleCondicionVenta(accion, agente, fecha) || OperacionesDeFechas.esUltimoDiaDelMes(fecha)) {
 			cantidad = agente.cantidadDeAccionesDeUnaEmpresa(accion);
 			operacion = new Venta(accion, fecha, cotizacion, cantidad);
 		}
@@ -31,11 +31,5 @@ public abstract class Estrategia {
 	
 	protected abstract String nombreEstrategia();
 
-	private boolean esPrimerDiaDelMes(DateTime fecha) {
-		return fecha.getDayOfMonth() == fecha.dayOfMonth().getMinimumValue();
-	}
-	
-	private boolean esUltimoDiaDelMes(DateTime fecha) {
-		return fecha.getDayOfMonth() == fecha.dayOfMonth().getMaximumValue();
-	}
+
 }
